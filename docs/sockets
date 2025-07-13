@@ -1,0 +1,29 @@
+ON SERVER SIDE:
+- Creating a listening socket requires at least 3 API calls:
+  1. Obtain a socket handle via socket()
+  2. Set the listening IP:Port via bind()
+  3. Create the listening socket via listen()
+
+Pseudo Code:
+
+fd = socket()
+bind(fd, address)
+listen(fd)
+while True:
+      conn_fd = accept(fd)
+      do_something_with(conn_fd)
+      close(conn_fd)
+
+ON CLIENT SIDE:
+- Connection socket is created from client side with 2 API calls:
+  1. Obtain a socket handle via socket()
+  2. Create the socket connection via connect()
+
+Pseudo Code:
+
+fd = socket()
+connect(fd, address)
+do_something_with(fd)
+close(fd)
+
+- Note that socket() creates a typeless socket; the socket type (listening or connecting) is determined after the listen() or connect() call
